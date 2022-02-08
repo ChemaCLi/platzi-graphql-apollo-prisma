@@ -1,8 +1,39 @@
-import { ApolloServer } from 'apollo-server';
+import { ApolloServer, gql } from 'apollo-server';
 
-const typeDefs = `
+const typeDefs = gql`
   type Query {
     info: String!
+    "Retrieves all the avocatos we know"
+    avocados: [Avocado!]!
+    avocado(id: ID!): Avocado
+  }
+
+  type Mutation {
+    addAvocado(avocado: AddAvocadoInput!): AddAvocadoResponse
+  }
+
+  type AddAvocadoResponse {
+    code: Int!
+    success: Boolean!
+    message: String!
+    avocado: Avocado
+  }
+
+  input AddAvocadoInput {
+    name: String!
+    picture: String
+    price: Float
+    unitMeasurement: String
+  }
+
+  "An univer gift"
+  type Avocado {
+    id: ID!
+    name: String!
+    "Picture URL"
+    picture: String
+    price: Float
+    unitMeasurement: String
   }
 `;
 
