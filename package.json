@@ -8,7 +8,9 @@
     "client",
     "packages/*"
   ],
-  "scripts": {},
+  "scripts": {
+    "server": "yarn --cwd api nodemon src/index.ts"
+  },
   "author": "@jonalvarezz",
   "license": "MIT",
   "prettier": {
